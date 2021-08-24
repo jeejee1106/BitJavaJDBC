@@ -157,11 +157,6 @@ public class Ex02SawonAdd {
 		}
 	}
 	
-	
-	
-	
-	
-	
 	public static void main(String[] args) {
 		Ex02SawonAdd ex = new Ex02SawonAdd();
 		ex.process();

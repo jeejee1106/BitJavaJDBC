@@ -93,7 +93,7 @@ public class Ex03SungjukDB {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			//바인딩 (수정이나 삭제는 바인딩이 많아서 prepareStatement로 써주는게 좋다.)
-			pstmt.setInt(1, seq1_test); //1이 뭐지???
+			pstmt.setInt(1, seq1_test); //1이 뭐지??? 첫번째 물음표!!!!!! 첫번째 물음표에 seq1_test 이 값을 넣겠다.
 			//실행
 			int n = pstmt.executeUpdate(); //여러가지 execute의 쓸모도 알아보고 공부하기 
 			if(n==0) {
