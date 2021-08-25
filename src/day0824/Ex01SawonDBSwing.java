@@ -20,11 +20,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import oracleDB.DBConnect2;
+import oracle.db.DbConnect;
 
 public class Ex01SawonDBSwing extends JFrame implements ItemListener, ActionListener{
 	
-	DBConnect2 db = new DBConnect2();
+	DbConnect db = new DbConnect();
 	
 	DefaultTableModel model;
 	JTable table;
@@ -47,9 +47,6 @@ public class Ex01SawonDBSwing extends JFrame implements ItemListener, ActionList
 	
 	//db의 데이터를 가져와서 테이블에 추가
 	//전체:1, 남자:2, 여자:3, 교육부:4, 홍보부:5, 관리부:6
-	
-	
-	
 	public void sawonTableWrite(int select) {
 		String sql = "";
 		if(select ==1) {
@@ -97,9 +94,6 @@ public class Ex01SawonDBSwing extends JFrame implements ItemListener, ActionList
 		}
 		
 	}
-	
-	
-	
 	
 	private void setDesign() {
 		this.setLayout(null);
@@ -162,22 +156,6 @@ public class Ex01SawonDBSwing extends JFrame implements ItemListener, ActionList
 //			this.sawonTableWrite(4);
 //		} else if(ob==rb[4]) {
 //			this.sawonTableWrite(5);
-//		}
-		
-//		if(ob.equals("전체")) {
-//			table.set
-//		} else if(ob.equals("남자")) {
-//			this.sawonTableWrite(2);
-//		} else if(ob.equals("여자")) {
-//			this.sawonTableWrite(3);
-//		} else if(ob.equals("남자")) {
-//			this.sawonTableWrite(4);
-//		} else if(ob.equals("교육부")) {
-//			this.sawonTableWrite(4);
-//		} else if(ob.equals("홍보부")) {
-//			this.sawonTableWrite(5);
-//		} else if(ob.equals("교육부")) {
-//			this.sawonTableWrite(6);
 //		}
 	}
 

@@ -16,22 +16,23 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-//추가만 하는 클래스
-public class ShopAddForm extends JFrame implements ActionListener{
+public class ShopUpdateForm extends JFrame implements ActionListener{
 	
 	JTextField tfSang, tfSu, tfDan;
 	JLabel lblPhoto;
 	String imageName;
-	JButton btnImage, btnInsert;
+	JButton btnImage, btnUpdate;
 	ShopDBModel dbmodel = new ShopDBModel();
 	PhotoDraw photodraw = new PhotoDraw();
+	String num; //메인으로부터 받아올 넘버값!!!
+	ShopDTO dto; //db로부터 받아온 num에 해당하는 데이터를 넣을 변수
 	
-	public ShopAddForm() {
-		super("상품추가");
+	public ShopUpdateForm() {
+		super("상품수정");
 		this.setBounds(700, 100, 350, 300);
 		this.setDesign();
 //		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setVisible(true);
+//		this.setVisible(true); //수정은 데이터를 넣은 후에 보여야하기 때문에 주석처리..?
 		
 	}
 	
@@ -74,10 +75,10 @@ public class ShopAddForm extends JFrame implements ActionListener{
 		tfDan.setBounds(80, 200, 50, 30);
 		this.add(tfDan);
 		
-		btnInsert = new JButton("DB에 추가");
-		btnInsert.setBounds(170, 200, 100, 30);
-		btnInsert.addActionListener(this);
-		this.add(btnInsert);
+		btnUpdate = new JButton("DB 수정");
+		btnUpdate.setBounds(170, 200, 100, 30);
+		btnUpdate.addActionListener(this);
+		this.add(btnUpdate);
 		
 		
 	}
@@ -115,18 +116,19 @@ public class ShopAddForm extends JFrame implements ActionListener{
 			photodraw.repaint(); //이미지 출력
 			
 			
-		} else if(ob==btnInsert) {
+		} else if(ob==btnUpdate) {
 			//ShopDto 생성
 			ShopDTO dto = new ShopDTO();
 			
-			//dto에 4개의 데이터를 넣는다(상품명, 사진이름, 수량, 단가)
+			//dto에 5개의 데이터를 넣는다(num, 상품명, 사진이름, 수량, 단가)
+			dto.setNum(num); //수정시 반드시 num값을 넣어줘야한다. 행번호인 num값을 받아서 수정할거니까!!!
 			dto.setSangpum(tfSang.getText());
 			dto.setPhoto(imageName);
 			dto.setSu(Integer.parseInt(tfSu.getText()));
 			dto.setDan(Integer.parseInt(tfDan.getText()));
 			
-			//DB모델의 insert 메소드 추가
-			dbmodel.insertShop(dto); //위 버튼을 눌러 발생한 이벤트에 넣은 값들을 insert메서드를 가져와서 거기에 넣어준다. 
+			//DB모델의 update 메소드 추가
+			dbmodel.updateShop(dto);
 			
 			//현재창 닫기
 			this.setVisible(false);
