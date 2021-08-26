@@ -17,9 +17,9 @@ public class Ex02SawonAdd {
 		System.out.println("사원명");
 		String name = sc.nextLine();
 		System.out.println("성별(남자/여자)");
-		String buseo = sc.nextLine();
-		System.out.println("부서명");
 		String gender = sc.nextLine();
+		System.out.println("부서명");
+		String buseo = sc.nextLine();
 		System.out.println("월급여");
 		int pay = Integer.parseInt(sc.nextLine());
 		
