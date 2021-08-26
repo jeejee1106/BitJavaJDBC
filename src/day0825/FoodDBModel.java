@@ -37,8 +37,8 @@ public class FoodDBModel {
 	}
 	
 	//food의 num 전체 반환
-	public String[] getNumArray() { //배열반환타입이면 콤보박스에 바로 넣을 수 있다. (벡터로 반환받고 나중에 형번환해두됨)
-		String sql = "select num from food ordwr by num";
+	public Object[] getNumArray() { //배열반환타입이면 콤보박스에 바로 넣을 수 있다.
+		String sql = "select num from food order by num";
 		Vector<String> num_list = new Vector<String>();
 		
 		Connection conn = db.getLocalOracle();
@@ -56,13 +56,13 @@ public class FoodDBModel {
 		} finally {
 			db.dbClose(rs, pstmt, conn);
 		}
-		//toArray()는 Object[]로 반환하므로!!! 우리는 String[] 로 형변환 해서 반환
-		String[] data = (String[])num_list.toArray();
-		return data;
+		
+		//toArray()는 Object[]로 반환
+		return num_list.toArray();
 		
 	}
 	
-	//num에 해당하는 Food반환
+	//num(시퀀스 번호에)에 해당하는 데이터 전체 반환(출력하는 메서드)!!!!!!!!!!!!
 	public FoodDTO getFoodData(int num) {
 		FoodDTO dto = new FoodDTO();
 		Connection conn = db.getLocalOracle();
@@ -79,10 +79,9 @@ public class FoodDBModel {
 				dto.setNum(rs.getInt("num"));
 				dto.setFood(rs.getString("food"));
 				dto.setPrice(rs.getInt("price"));
+				dto.setShop(rs.getString("shop"));
 				dto.setIoc(rs.getString("ioc"));
 				dto.setPhoto(rs.getString("photo"));
-				dto.setShop(rs.getString("shop"));
-				
 			}
 			
 		} catch (SQLException e) {
@@ -94,8 +93,64 @@ public class FoodDBModel {
 		return dto;
 	}
 	
+	//주문 추가
+	public void insertJumun(JumunDTO dto) {
+		String sql = "insert into jumun values (seq_food.nextval, ?,?,?)";
+		Connection conn = db.getLocalOracle();
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getName());
+			pstmt.setInt(2, dto.getNum());
+			pstmt.setString(3, dto.getAddr());
+			
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(pstmt, conn);
+		}
+	}
 	
-	
+	//주문리스트 반환
+	public Vector<JoinDTO> getJumunList(){
+		String sql ="select num1, name, addr, f.num, food, price, shop, ioc, photo from food f, jumun j where f.num = j.num";
+		Vector<JoinDTO> list = new Vector<JoinDTO>();
+		
+		Connection conn = db.getLocalOracle();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				JoinDTO dto = new JoinDTO();
+				dto.setNum1(rs.getString("num1"));
+				dto.setName(rs.getString("name"));
+				dto.setAddr(rs.getString("addr"));
+				dto.setNum(rs.getInt("num"));
+				dto.setFood(rs.getString("food"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setShop(rs.getString("shop"));
+				dto.setIoc(rs.getString("ioc"));
+				dto.setPhoto(rs.getString("photo"));
+				
+				// list에 추가
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		
+		return list;
+	}
 	
 	
 	

@@ -31,8 +31,8 @@ public class FoodForm extends JFrame implements ActionListener{
 		super("새 메뉴 추가");
 		this.setBounds(600, 130, 300, 400);
 		this.setDesign();
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setVisible(true);
+//		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+//		this.setVisible(true);
 	}
 
 	private void setDesign() {
@@ -113,9 +113,9 @@ public class FoodForm extends JFrame implements ActionListener{
 		}
 	}
 	
-	public static void main(String[] args) {
-		new FoodForm();
-	}
+//	public static void main(String[] args) {
+//		new FoodForm();
+//	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -139,18 +139,19 @@ public class FoodForm extends JFrame implements ActionListener{
 		}else if(ob==btnSave) { //푸드,프라이스,샵,ioc,포토
 			//db저장 후 모든 데이터(이미지 포함) 초기화
 			
-			FoodDTO dto = new FoodDTO();
+			FoodDTO dto = new FoodDTO(); //입력한 값들을 dto에 넣어주기!
 			dto.setFood(tfFood.getText());
 			dto.setPrice(Integer.parseInt(tfPrice.getText()));
-//			JComboBox<String> cbShop;
-			dto.setShop(String.valueOf(cbShop.getSelectedIndex()));
+			dto.setShop(String.valueOf(cbShop.getSelectedItem())); //item으로 안하고 index로 해서 값이 숫자로 나왔었음 ㅜㅜ
 			dto.setPhoto(photoName);
 			dto.setIoc(tfIoc.getText());
 			
 			tfFood.setText("");
 			tfPrice.setText("");
-			cbShop = null;
-			lblPhoto.setText("");
+			cbShop.setSelectedIndex(0); //콤보박스 초기화
+			lblPhoto.setText(""); //사진경로 초기화
+			photoName = null; //???????
+			draw.repaint(); //이미지 초기화
 			tfIoc.setText("");
 			
 			
