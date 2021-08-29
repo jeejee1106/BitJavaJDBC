@@ -1,6 +1,7 @@
 package day0825;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,11 +10,12 @@ import java.util.Vector;
 import oracle.db.DbConnect;
 
 public class FoodDBModel {
-	DbConnect db = new DbConnect(); //오라클 드라이버를 연결한 클래스를 생성해주자!
+	DbConnect db = new DbConnect(); //오라클 드라이버를 연결한 클래스객체를 생성해주자!
 	
 	//food insert
 	public void insertFood(FoodDTO dto) {
 		Connection conn = db.getLocalOracle(); //오라클 드라이버의 Local로 연결!
+		//conn = DriverManager.getConnection(OLACLE_LOCAL, "angel", "a1234"); 임!!!!!!!!!!!
 		PreparedStatement pstmt = null; //PreparedStatement는 SQL문을 담는 역할을 하는 인터페이스이다.
 		String sql = "insert into food values (seq_food.nextval, ?,?,?,?,?)";
 		
@@ -38,7 +40,7 @@ public class FoodDBModel {
 	
 	//food의 num 전체 반환
 	public Object[] getNumArray() { //배열반환타입이면 콤보박스에 바로 넣을 수 있다.
-		String sql = "select num from food order by num";
+		String sql = "select num from food order by num"; //num은 시퀀스로 값을 줬음. 시퀀스값 오름차순으로 출력
 		Vector<String> num_list = new Vector<String>();
 		
 		Connection conn = db.getLocalOracle();
@@ -62,7 +64,7 @@ public class FoodDBModel {
 		
 	}
 	
-	//num(시퀀스 번호에)에 해당하는 데이터 전체 반환(출력하는 메서드)!!!!!!!!!!!!
+	//num(시퀀스 번호에)에 해당하는 데이터 전체(*) 반환(출력하는 메서드)!!!!
 	public FoodDTO getFoodData(int num) {
 		FoodDTO dto = new FoodDTO();
 		Connection conn = db.getLocalOracle();

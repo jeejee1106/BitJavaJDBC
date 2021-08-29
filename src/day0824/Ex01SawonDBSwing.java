@@ -71,7 +71,7 @@ public class Ex01SawonDBSwing extends JFrame implements ItemListener, ActionList
 			rs = pstmt.executeQuery();
 			
 			//기존의 데이터 삭제 후 가져오기
-			model.setRowCount(0); //행을 0개로 만들겠다. 5넣으면 5개로 만들겠다!
+			model.setRowCount(0); //행을 0개로 만들겠다. 5넣으면 5개로 만들겠다!(5개만 남기겠다)
 			
 			
 			while(rs.next()) {

@@ -92,10 +92,11 @@ public class FoodJumunMain extends JFrame{
 		cbjumunNo.setBounds(130, 200, 100, 30);
 		this.add(cbjumunNo);
 
-		//사진 위치 설정
+		//음식명 라벨 생성
 		lblFoodName = new JLabel("음식명"); //굳이 제목을 줄 필요는 없당. 위치 보려고 제목 넣어봄
 		lblFoodName.setBounds(70, 230, 100, 30);
 		this.add(lblFoodName);
+		//음식사진 위치 잡고 생성
 		fimage.setBounds(70, 270, 200, 200); //캔버스 프레임 크기랑 위치!
 		fimage.setBackground(Color.black);
 		this.add(fimage);
@@ -171,7 +172,7 @@ public class FoodJumunMain extends JFrame{
 		JScrollPane js = new JScrollPane(table);
 		js.setBounds(350, 250, 600, 300);
 		this.add(js);
-		jumunWrite();
+		jumunWrite(); //데이터 테이블에 추가하기
 
 		//테이블 클릭시 이미지 출력
 		table.addMouseListener(new MouseAdapter() {

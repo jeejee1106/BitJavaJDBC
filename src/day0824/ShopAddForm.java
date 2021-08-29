@@ -26,6 +26,7 @@ public class ShopAddForm extends JFrame implements ActionListener{
 	ShopDBModel dbmodel = new ShopDBModel();
 	PhotoDraw photodraw = new PhotoDraw();
 	
+	
 	public ShopAddForm() {
 		super("상품추가");
 		this.setBounds(700, 100, 350, 300);
@@ -94,9 +95,7 @@ public class ShopAddForm extends JFrame implements ActionListener{
 			if(imageName!=null) {
 				Image image = new ImageIcon(imageName).getImage();
 				g.drawImage(image, 10, 10, 70, 70, this);
-			}
-			
-			
+			}		
 		}
 	}
 
@@ -104,13 +103,13 @@ public class ShopAddForm extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Object ob = e.getSource();
 		if(ob==btnImage) {
-			FileDialog dlg = new FileDialog(this, "이미지 가져오기", FileDialog.LOAD);
-			dlg.setVisible(true);
+			FileDialog dlg = new FileDialog(this, "이미지 가져오기", FileDialog.LOAD); //파일을 가져오는 그 창 뜨는 코드
+			dlg.setVisible(true); //그 창이 보이게!!!
 			//취소 누르면 메서드 종료
 			if(dlg.getDirectory()==null) {
 				return;
 			}
-			imageName = dlg.getDirectory() + dlg.getFile(); //이미지명 얻기(파일 주소임!)
+			imageName = dlg.getDirectory() + dlg.getFile(); //이미지명 얻기(파일 주소임!) 파일경로 + 파일명
 			lblPhoto.setText(imageName); //이미지명 라벨에 출력하기
 			photodraw.repaint(); //이미지 출력
 			

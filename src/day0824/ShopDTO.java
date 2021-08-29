@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class ShopDTO {
 	private String num;
-	private String sangpum;
-	private String photo;
+	private String sangpum; 
+	private String photo; 
 	private int su;
 	private int dan;
 	private Date guipday;

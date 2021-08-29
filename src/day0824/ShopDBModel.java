@@ -48,6 +48,7 @@ public class ShopDBModel {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) { //sql문의 "num", "sangpum" 등을 한줄한줄(rs.) 읽어와서(getString) dto의 setNum(세터) 에 넣을것이다!
+				
 				ShopDTO dto = new ShopDTO(); // db에서 하나의 레코드를 읽어서 dto에 넣을것이다!
 				dto.setNum(rs.getString("num"));
 				dto.setSangpum(rs.getString("sangpum"));
