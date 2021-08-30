@@ -176,7 +176,7 @@ public class Ex01SawonDBSwing extends JFrame implements ItemListener, ActionList
 				return;
 			}
 			
-			//선택한 행의 in(num) 값 얻기. 배열에서 id(num) 컬럼은 인덱스1에 있음! 그래서 1을 써줌. 2를 쓰면 인덱스2 에 있는 이름이 출력됨!
+			//선택한 행의 id(num) 값 얻기. 배열에서 id(num) 컬럼은 인덱스1에 있음! 그래서 1을 써줌. 2를 쓰면 인덱스2 에 있는 이름이 출력됨!
 			String num = (String)model.getValueAt(row, 1); //num에다가 선택한 행(row)의 인덱스1의 데이터 값을 넣어줄거야
 //			System.out.println(num); //행 선택 후 삭제 누르면 콘솔에 해당 행의 id 데이터가 출력됨
 			

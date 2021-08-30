@@ -70,7 +70,7 @@ public class Ex02shopMain extends JFrame implements ActionListener{
 			} else {
 				ShopDTO dto = dbmodel.getData(num);
 				ShopUpdateForm updateForm = new ShopUpdateForm();
-				//수정폼에 데이터 넣기
+				//수정프레임에 전에 있던 데이터 넣기 ->그럼 전에있던 데이터가 다 적힌 상태로 프레임이 나옴!
 				updateForm.num = dto.getNum();
 				updateForm.tfSang.setText(dto.getSangpum());
 				updateForm.imageName = dto.getPhoto();
@@ -78,7 +78,7 @@ public class Ex02shopMain extends JFrame implements ActionListener{
 				updateForm.tfDan.setText(String.valueOf(dto.getDan()));
 				updateForm.lblPhoto.setText(dto.getPhoto());
 				
-				//데이터 넣은 후 수정 폼 보이게 하기
+				//데이터 넣은 후 수정 폼 보이게 하기 ->그럼 전에있던 데이터가 다 적힌 상태로 프레임이 나옴!
 				updateForm.setVisible(true);
 			}
 			

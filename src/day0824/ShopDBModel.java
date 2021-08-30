@@ -127,9 +127,12 @@ public class ShopDBModel {
 			pstmt.setInt(3, dto.getDan());
 			pstmt.setString(4, dto.getPhoto());
 			pstmt.setString(5, dto.getNum());
-	
+			
+			pstmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			db.dbClose(pstmt, conn);
 		}
 		
 		
